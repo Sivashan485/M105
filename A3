@@ -1,0 +1,109 @@
+--AUFGABE 1
+/*
+INSERT INTO tb_Mitarbeiter
+VALUES(2135, 'Alfred','Wolpert','am Haidenberg 67','Fehralorf','22.12.1963')
+;
+
+--AUFGABE 2
+ALTER TABLE tb_Artikel
+ADD Verkaufspreis MONEY
+
+
+ALTER TABLE tb_Mitarbeiter
+ADD Stundenlohn SMALLMONEY
+;
+
+--AUFGABE 3
+
+UPDATE VON LOHN MITARBEITER
+
+UPDATE tb_Mitarbeiter
+SET Stundenlohn = 56
+WHERE Nachname = 'Oppliger'
+;
+UPDATE tb_Mitarbeiter
+SET Stundenlohn = 54
+WHERE Nachname = 'Schmid'
+;
+UPDATE tb_Mitarbeiter
+SET Stundenlohn = 57
+WHERE Nachname = 'Koller'
+;
+UPDATE tb_Mitarbeiter
+SET Stundenlohn = 55
+WHERE Nachname = 'Wolpert'
+;
+UPDATE tb_Mitarbeiter
+SET Stundenlohn = 52
+WHERE Nachname = 'Meier'
+;
+
+--UPDATE VON SCHRAUBEN VERKAUFPREIS
+
+UPDATE tb_Artikel
+SET Verkaufspreis = 15
+WHERE Bezeichnung = 'Schrauben'
+;
+UPDATE tb_Artikel
+SET Verkaufspreis = 18
+WHERE Bezeichnung = 'Nägel'
+;
+UPDATE tb_Artikel
+SET Verkaufspreis = 17
+WHERE Bezeichnung = 'Muttern'
+;
+
+--AUFGABE 4
+SELECT Nachname, Vorname
+FROM tb_Mitarbeiter
+WHERE Ort = 'Rüti' AND Geburtstag < '1.1.1980'
+;
+
+--AUFGABE 5
+SELECT MIN(Geburtstag)AS MINIMUM,MAX(Geburtstag)AS MAXIMUM
+FROM tb_Mitarbeiter
+DATEDIFF(DAY,MAXIMUM,MINIMUM)
+;
+
+--AUFGABE 6
+SELECT AuftragNr_FK, SUM(Zeit_in_Stunden)AS SUMME
+FROM tb_Bearbeitet
+GROUP BY AuftragNr_FK
+ORDER BY SUMME DESC
+;
+
+--AUFGABE 7
+SELECT AVG(Verkaufspreis)
+FROM tb_Artikel;
+
+--AUFGABE 8
+INSERT INTO tb_Auftrag
+VALUES(565,15)
+;
+
+--AUFGABE 9
+UPDATE tb_bearbeitet
+SET AuftragNr_FK = 565
+WHERE AuftragNr_FK = 233 AND PersonalNr_FK = 1869
+;
+
+--AUFGABE 10
+DELETE FROM tb_Mitarbeiter
+WHERE Nachname = 'Meier'
+;
+--AUFGABE 11
+
+--AUFGABE 12
+SELECT COUNT(*) AS ANZAHL
+FROM tb_Mitarbeiter;
+
+--AUFGABE 13
+SELECT COUNT(*) AS ANZAHL_LL
+FROM tb_Mitarbeiter
+WHERE Nachname LIKE '%LL%'
+;
+
+--AUFGABE 14
+ALTER TABLE tb_Mitarbeiter
+DROP COLUMN Geburtstag
+;
