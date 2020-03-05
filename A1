@@ -1,0 +1,34 @@
+--ERSTELLEN DATENBANK
+CREATE DATABASE Auftragsverwaltung
+;
+
+--NUTZE DATABANK AUFTRAGSVERWALUTNG
+USE Auftragsverwaltung
+;
+
+
+--ERSTELLE TABLE ARTIKEL
+CREATE TABLE tb_Artikel(ArtikelNr_PK INT PRIMARY KEY,
+			Bezeichnung VARCHAR(30)NOT NULL UNIQUE)
+;
+
+--ERTELLE TABLE MITARBEITER
+CREATE TABLE tb_Mitarbeiter(PersonalNr_PK INT PRIMARY KEY,
+			Vorname VARCHAR(30),
+			Nachname VARCHAR(30)NOT NULL,
+			Adresse VARCHAR(30),
+			Ort VARCHAR(30),
+			Geburtstag DATETIME)
+;
+
+--ERSTELLE TABLE AUFTRAG
+CREATE TABLE tb_Auftrag(AuftragNr_PK INT PRIMARY KEY,
+			ArtikelNr_FK INT FOREIGN KEY REFERENCES tb_Artikel(ArtikelNr_PK))
+;
+
+--ERSTELLE TABLE Bearbeitet
+CREATE TABLE tb_Bearbeitet(AuftragNr_FK INT FOREIGN KEY REFERENCES tb_Auftrag(AuftragNr_PK),
+				PersonalNr_FK INT FOREIGN KEY REFERENCES tb_Mitarbeiter(PersonalNr_PK),
+				Zeit_in_Stunden DECIMAL(3,2),
+				PRIMARY KEY(AuftragNr_FK, PersonalNr_FK))
+;
